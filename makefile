@@ -8,7 +8,7 @@ ERROR_OPTIONS=-Wall
 bin/main: build/src/main.o build/src/alphabet.o
 	gcc $(ERROR_OPTIONS) build/src/main.o build/src/alphabet.o -o bin/main
 
-build/src/main.o: src/main.c src src/alphabet.h
+build/src/main.o: src/main.c  src/alphabet.h
 	gcc $(ERROR_OPTIONS) -c src/main.c -o build/src/main.o
 
 build/src/alphabet.o: src/alphabet.c src/alphabet.h
@@ -17,10 +17,10 @@ build/src/alphabet.o: src/alphabet.c src/alphabet.h
 bin/test: build/test/main.o build/test/test.o
 	gcc $(ERROR_OPTIONS) build/test/main.o build/test/test.o -o bin/test
 
-build/test/main.o: test/main.c
+build/test/main.o: test/main.c src/alphabet.h
 	gcc $(ERROR_OPTIONS) -c test/main.c -o build/test/main.o
 
-build/test/test.o: test/test.c
+build/test/test.o: test/test.c src/alphabet.h
 	gcc $(ERROR_OPTIONS) -c test/test.c -o build/test/test.o
 
 format:
