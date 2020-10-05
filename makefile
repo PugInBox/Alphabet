@@ -17,10 +17,10 @@ build/src/alphabet.o: src/alphabet.c src/alphabet.h
 bin/test: build/test/main.o build/test/test.o
 	gcc $(ERROR_OPTIONS) build/test/main.o build/test/test.o -o bin/test
 
-build/test/main.o: test/main.c src/alphabet.h
+build/test/main.o: thirdparty/ctest.h
 	gcc $(ERROR_OPTIONS) -c test/main.c -o build/test/main.o
 
-build/test/test.o: test/test.c src/alphabet.h
+build/test/test.o: thirdparty/ctest.h 
 	gcc $(ERROR_OPTIONS) -c test/test.c -o build/test/test.o
 
 format:

@@ -3,4 +3,4 @@
 *.~
 *#
 main
-test
+bin/test
