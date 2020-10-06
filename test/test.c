@@ -19,30 +19,6 @@ CTEST(file_check, file_dosnt_exist)
     int expected = 0;
     ASSERT_EQUAL(expected, result);
 }
-CTEST(sort_check, words_count_equal)
-{
-    char strings[100][100], str[200];
-    int expected = 3;
-    int result;
-    FILE* f = open_file("test.txt", "r");
-    if (f == NULL) {
-        return NULL;
-    }
-    result = check_file(f, strings);
-    ASSERT_EQUAL(expected, result);
-}
-CTEST(sort_check, words_count_not_equal)
-{
-    char strings[100][100], str[200];
-    int expected = 12;
-    int result;
-    FILE* f = open_file("test.txt", "r");
-    if (f == NULL) {
-        return NULL;
-    }
-    result = check_file(f, strings);
-    ASSERT_EQUAL(expected, result);
-}
 CTEST(ENG_words_check, register_check_1)
 {
     char expected[] = "hello";
