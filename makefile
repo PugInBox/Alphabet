@@ -14,8 +14,8 @@ build/src/main.o: src/main.c  src/alphabet.h
 build/src/alphabet.o: src/alphabet.c src/alphabet.h
 	gcc $(ERROR_OPTIONS) -c src/alphabet.c -o build/src/alphabet.o
 
-bin/test: build/test/main.o build/test/test.o
-	gcc $(ERROR_OPTIONS) build/test/main.o build/test/test.o -o bin/test
+bin/test: build/test/main.o build/test/test.o build/src/alphabet.o
+	gcc $(ERROR_OPTIONS) build/test/main.o build/test/test.o build/src/alphabet.o -o bin/test
 
 build/test/main.o: thirdparty/ctest.h
 	gcc $(ERROR_OPTIONS) -c test/main.c -o build/test/main.o
