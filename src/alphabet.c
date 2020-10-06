@@ -1,4 +1,6 @@
 #include "alphabet.h"
+#include <ctype.h>
+#include <locale.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -11,6 +13,15 @@ FILE* open_file(char* file_name, char* mode)
     return file;
 }
 
+void UpperToLower(char* string)
+{
+    int i = 0;
+    while (string[i] != '\n') {
+        string[i] = tolower(string[i]);
+        i++;
+    }
+}
+
 int check_file(FILE* file, char strings[][MAX_LENGTH_STRING])
 {
     char str[MAX_LENGTH_STRING];
@@ -19,7 +30,7 @@ int check_file(FILE* file, char strings[][MAX_LENGTH_STRING])
         fscanf(file, "%s", str);
         strcpy(strings[count++], str);
     }
-
+    UpperToLower(strings);
     for (int i = 1; i < count; i++) {
         for (int j = 0; j < count - i; j++) {
             if (strcmp(strings[j], strings[j + 1]) > 0) {
