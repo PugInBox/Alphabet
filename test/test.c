@@ -43,3 +43,39 @@ CTEST(sort_check, words_count_not_equal)
     result = check_file(f, strings);
     ASSERT_EQUAL(expected, result);
 }
+CTEST(ENG_words_check, register_check_1)
+{
+    char expected[] = "hello";
+    char result[] = "HELLO";
+    for (int i = 0; i < 5; i++) {
+        result[i] = tolower(result[i]);
+    }
+    ASSERT_STR(expected, result);
+}
+CTEST(ENG_words_check, register_check_2)
+{
+    char expected[] = "HELLO";
+    char result[] = "HELLO";
+    for (int i = 0; i < 5; i++) {
+        result[i] = tolower(result[i]);
+    }
+    ASSERT_STR(expected, result);
+}
+CTEST(RU_words_check, register_check_1)
+{
+    char expected[] = "привет";
+    char result[] = "ПРИВЕТ";
+    for (int i = 0; i < 5; i++) {
+        result[i] = tolower(result[i]);
+    }
+    ASSERT_STR(expected, result);
+}
+CTEST(RU_words_check, register_check_2)
+{
+    char expected[] = "ПРИВЕТ";
+    char result[] = "ПРИВЕТ";
+    for (int i = 0; i < 5; i++) {
+        result[i] = tolower(result[i]);
+    }
+    ASSERT_STR(expected, result);
+}
