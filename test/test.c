@@ -1,45 +1,30 @@
 #include "../src/alphabet.h"
 #include "../thirdparty/ctest.h"
 
-CTEST(file_check, file_exist)
+CTEST(sort_check, main_sort)
 {
-    FILE* result = fopen("../input.txt", "r");
-    if (result == NULL) {
-        result = 0;
-    }
-    int expected = 0;
-    ASSERT_EQUAL(expected, result);
-}
-CTEST(file_check, file_dosnt_exist)
-{
-    FILE* result = fopen("input.txt", "r");
-    if (result == NULL) {
-        result = 0;
-    }
-    int expected = 0;
-    ASSERT_EQUAL(expected, result);
-}
-CTEST(sort_check, words_count_equal)
-{
-    char strings[100][100], str[200];
-    int expected = 3;
-    int result;
-    FILE* f = open_file("test.txt", "r");
+    int i, j, k;
+    char expected[MAX_LENGTH_STRING * MAX_LENGTH_STRING];
+    char a[MAX_LENGTH_STRING][MAX_LENGTH_STRING];
+    char real[MAX_LENGTH_STRING * MAX_LENGTH_STRING] = "abc";
+    FILE* f = fopen("test.txt", "r");
     if (f == NULL) {
-        return NULL;
+        return ERROR_OPEN_FILE;
     }
-    result = check_file(f, strings);
-    ASSERT_EQUAL(expected, result);
+    int count = check_file(f, a);
+    k = 0;
+    for (i = 0; i < sizeof a / sizeof *a; ++i)
+        for (j = 0; j < sizeof a[0] / sizeof **a; ++j) {
+            expected[k] = a[i][j];
+            ++k;
+        }
+    ASSERT_STR(expected, real);
 }
-CTEST(sort_check, words_count_not_equal)
+
+CTEST(function_check, UpperToLower)
 {
-    char strings[100][100], str[200];
-    int expected = 12;
-    int result;
-    FILE* f = open_file("test.txt", "r");
-    if (f == NULL) {
-        return NULL;
-    }
-    result = check_file(f, strings);
-    ASSERT_EQUAL(expected, result);
+    char expected[MAX_LENGTH_STRING] = "hello world";
+    char real[MAX_LENGTH_STRING] = "HELLO WORLD";
+    UpperToLower(real);
+    ASSERT_STR(expected, real);
 }
