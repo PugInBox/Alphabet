@@ -1,22 +1,12 @@
 #include "alphabet.h"
 #include <ctype.h>
-#include <locale.h>
 #include <stdio.h>
 #include <string.h>
-
-FILE* open_file(char* file_name, char* mode)
-{
-    FILE* file = fopen(file_name, mode);
-    if (file == NULL) {
-        return NULL;
-    }
-    return file;
-}
 
 void UpperToLower(char* string)
 {
     int i = 0;
-    while (string[i] != '\n') {
+    while (string[i] != '\0') {
         string[i] = tolower(string[i]);
         i++;
     }
@@ -24,9 +14,9 @@ void UpperToLower(char* string)
 
 int check_file(FILE* file, char strings[][MAX_LENGTH_STRING])
 {
-    char str[MAX_LENGTH_STRING];
+    char str[100];
     int count = 0;
-    while (feof(file) == 0 && count < MAX_LENGTH_FILE) {
+    while (feof(file) == 0 && count < MAX_LENGTH_STRING) {
         fscanf(file, "%s", str);
         strcpy(strings[count++], str);
     }
